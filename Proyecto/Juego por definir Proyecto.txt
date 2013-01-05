@@ -1,0 +1,84 @@
+Juego: Nombre por Definir
+
+Personaje principal: Nombre por definir
+
+
+
+
+9 puertas
+
+3 primeras opciones
+
+-Batalla contra enemigo debil
+
+-Tesoro: Pocion
+
+-Arma: Espada
+
+
+3 opciones #2
+
+-Cuarto Vacío
+
+-Trampa -Vida
+
+-Enemigo Debil
+
+
+3 opciones #3
+
+-Pasillo que lleva al jefe final
+
+-Pasillo que lleva al jefe final
+
+-Trampa Mortal (Game Over)
+
+
+Clase Personaje
+
+Atributos:
+
+Vida: 20
+
+Ataque: 5
+
+Suerte: ?
+
+
+Clase Enemigo debil 1
+
+Atributos:
+
+Vida: 7
+
+Ataque: 2
+
+
+Clase Enemigo debil 2
+
+Atributos:
+
+Vida: 10
+
+Ataque: 3
+
+
+Clase Jefe Final:
+
+Vida: 40
+
+Ataque: 6
+
+ 
+
+Opciones de Batalla
+
+Atacar: Ataque normal con valores aleatorios +-1
+
+Defender: (Divide el daño a la mitad)
+
+Objeto: 
+
+Huir: 40% de probabilidad de éxito para escapar de un enemigo débil
+
+
