@@ -63,7 +63,7 @@ print "(1)Continuar"
 print "(2)Salir de la cueva"
 select=0
 while (select>2 or select<1):
-    select=int(raw_input("Your Choise: "))
+    select=int(raw_input("Your Choice: "))
     if select==1:
         pygame.mixer.music.load("C:\Python27\data\room2.mp3")
         pygame.mixer.music.play()
