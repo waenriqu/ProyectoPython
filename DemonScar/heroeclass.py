@@ -48,3 +48,17 @@ class Heroe:
         print "Defensa:", Heroe.defensa
         print "Velocidad:", Heroe.velocidad
         print "Magia:", Heroe.magia
+
+        def indiVida(self):
+        if self.hp>35:
+            print "Estas muy bien"
+        elif self.hp>30:
+            print "Suenas agotado"
+        elif self.hp>23:
+            print "Te estas poniendo palido"
+        elif self.hp>15:
+            print "Veo tu sangre correr"
+        elif self.hp>7:
+            print "Tu vista se nubla, ya no puedes avanzar mas"
+        elif self.hp==1:
+            print "Deshecho ya ni arrastrarte te servira"
