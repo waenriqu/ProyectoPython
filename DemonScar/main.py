@@ -42,41 +42,90 @@ pygame.mixer.music.stop()
 
 pygame.mixer.music.load("C:\Python27\data\intro1.mp3")
 pygame.mixer.music.play()
-time.sleep(25)
+raw_input("Press enter to skip or to continue...")
 pygame.mixer.music.load("C:\Python27\data\intro2.mp3")
 pygame.mixer.music.play()
-time.sleep(25)
+raw_input("Press enter to skip or to continue...")
 pygame.mixer.music.load("C:\Python27\data\intro3.mp3")
 pygame.mixer.music.play()
-time.sleep(15)
+raw_input("Press enter to skip or to continue...")
 pygame.mixer.music.load("C:\Python27\data\intro4.mp3")
 pygame.mixer.music.play()
-time.sleep(25)
+raw_input("Press enter to skip or to continue...")
 pygame.mixer.music.load("C:\Python27\data\intro5.mp3")
 pygame.mixer.music.play()
-time.sleep(15)
+raw_input("Press enter to skip or to continue...")
 pygame.mixer.music.load("C:\Python27\data\intro6.mp3")
 pygame.mixer.music.play()
-time.sleep(15)
+raw_input("Press enter to skip or to continue...")
 
 print "(1)Continuar"
 print "(2)Salir de la cueva"
 select=0
 while (select>2 or select<1):
-    select=int(raw_input("Your Choice: "))
-    if select==1:
-        pygame.mixer.music.load("C:\Python27\data\room2.mp3")
-        pygame.mixer.music.play()
-        time.sleep(15)
-        pygame.mixer.music.load("C:\Python27\data\room2_1.mp3")
-        pygame.mixer.music.play()
-        time.sleep(15)
-    elif select==2:
-        ppygame.mixer.music.load("C:\Python27\data\over.mp3")
-        pygame.mixer.music.play()
-        time.sleep(15)
-    else:
-        print "Wrong Answer"
+    select=int(raw_input("Your Choise: "))
+if select==1:
+    pygame.mixer.music.load("C:\Python27\data\om2.mp3")
+    pygame.mixer.music.play()
+    raw_input("Press enter to skip or to continue...")
+    pygame.mixer.music.load("C:\Python27\data\om2_1.mp3")
+    pygame.mixer.music.play()
+    raw_input("Press enter to skip or to continue...")
+    select=0
+    while (select>2 or select<1):
+        select=int(raw_input("Your Choise: "))
+        if select==2:
+            heroe.hp=heroe.hp-5
+            enemigo=Enemie()
+            enemigo.defEnem(20, 15, 10, 12, 10)
+            print "Enemigo Goblin ha aparecido"
+            while (heroe.hp>0 and enemigo.hp>0):
+                if(enemigo.velocidad>heroe.velocidad):
+                    aleat=random.randrange(1, 5)
+                    print aleat
+                    if (aleat==1):
+                        print "goblin is watching"
+                    else:
+                        print "goblin ataca"
+                        heroe.hp_lost(enemigo.ataque)
+                    print "Atacaras? (1)si (2)no"
+                    select=0
+                    while (select<1 or select>2):
+                        select=int(raw_input("Your Choise: "))
+                    if select==1:
+                        enemigo.hp_lost(heroe.ataque)
+                    else:
+                        print "No dejes que te engañe"
+                else:
+                    print "Atacaras? (1)si (2)no"
+                    select=0
+                    while (select<1 or select>2):
+                        select=int(raw_input("Your Choise: "))
+                    if select==1:
+                        enemigo.hp_lost(heroe.ataque)
+                    else:
+                        print "No dejes que te engañe"
+                    aleat=random.randrange(1, 5)
+                    print aleat
+                    if (aleat==1):
+                        print "goblin is watching"
+                    else:
+                        heroe.hp_lost(enemigo.ataque)
+                        print "goblin ataca"
+                print heroe.hp, enemigo.hp
+                heroe.indiVida()
+        if select==1:
+            print "la otra ruta"
+                        
+                        
+                
+                 
+elif select==2:
+    pygame.mixer.music.load("C:\Python27\data\over.mp3")
+    pygame.mixer.music.play()
+    time.sleep(15)
+    exit()
+    
 
 pygame.mixer.music.load("C:\Python27\data\PrevioBatalla.mp3")
 pygame.mixer.music.play()
