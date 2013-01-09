@@ -6,6 +6,9 @@ import sys, pygame
 sys.path.append("C:\Users\Presario\Documents\python\PyDarkQuest")
 from enemie import Enemie
 import random
+import pygame.mixer
+import time
+
 
 class Heroe:
     name=""
@@ -15,6 +18,7 @@ class Heroe:
     defensa=0
     velocidad=0
     magia=0
+    spell=0
 
     def clasWar(self):
         Heroe.clase="Warrior"
@@ -57,51 +61,111 @@ class Heroe:
 
     def indiVida(self):
         if self.hp>35:
-            print "Estas muy bien"
+            pygame.mixer.music.load("C:\Python27\data\hpbien.mp3")
+            pygame.mixer.music.play()
+            time.sleep(3)
         elif self.hp>30:
-            print "Suenas agotado"
+            pygame.mixer.music.load("C:\Python27\data\hpmed.mp3")
+            pygame.mixer.music.play()
+            time.sleep(3)
         elif self.hp>23:
-            print "Te estas poniendo palido"
+            pygame.mixer.music.load("C:\Python27\data\palido.mp3")
+            pygame.mixer.music.play()
+            time.sleep(3)
         elif self.hp>15:
-            print "Veo tu sangre correr"
+            pygame.mixer.music.load("C:\Python27\data\sangre.mp3")
+            pygame.mixer.music.play()
+            time.sleep(3)
         elif self.hp>7:
-            print "Tu vista se nubla, ya no puedes avanzar mas"
+            pygame.mixer.music.load("C:\Python27\data\hpmal.mp3")
+            pygame.mixer.music.play()
+            time.sleep(3)
         elif self.hp==1:
-            print "Deshecho ya ni arrastrarte te servira"
+            pygame.mixer.music.load("C:\Python27\data\hp1.mp3")
+            pygame.mixer.music.play()
+            time.sleep(3)
     def pelea(self, enemigo):
+        pygame.mixer.music.load("C:\Python27\data\ero.mp3")
+        pygame.mixer.music.play()
+        time.sleep(5)
         while (self.hp>0 and enemigo.hp>0):
                     if(enemigo.velocidad>self.velocidad):
                         aleat=random.randrange(1, 5)
-                        print aleat
+                        #print aleat
                         if (aleat==1):
-                            print "goblin is watching"
+                            pygame.mixer.music.load("C:\Python27\data\observa.mp3")
+                            pygame.mixer.music.play()
+                            time.sleep(3)
                         else:
-                            print "goblin ataca"
+                            pygame.mixer.music.load("C:\Python27\data\hplost.mp3")
+                            pygame.mixer.music.play()
+                            time.sleep(3)
                             self.hp=self.hp-(enemigo.ataque/self.defensa)*10
-                        print "Atacaras? (1)si (2)no"
+                        
                         select=0
-                        while (select<1 or select>2):
-                            select=int(raw_input("Your Choise: "))
-                        if select==1:
-                           enemigo.hp_lost(self.ataque)
-                        else:
-                            print "No dejes que te engañe"
+                        if self.hp>0:
+                            
+                            pygame.mixer.music.load("C:\Python27\data\menupelea.mp3")
+                            pygame.mixer.music.play()
+                            raw_input("Press enter to skip or to continue...")
+                            pygame.mixer.music.stop()
+                            while (select<1 or select>4):
+                                print "(1)Ataque (2)Magia (3)Hechizo (4)Observar"
+                                select=int(raw_input("Your Choise: "))
+                                if (self.spell==0 and select==3):
+                                    pygame.mixer.music.load("C:\Python27\data\ospel.mp3")
+                                    pygame.mixer.music.play()
+                                    time.sleep(3)
+                                    select=0
+                            if select==1:
+                                enemigo.hp_lost(self.ataque)
+                            elif select==2:
+                                enemigo.hp_lost(self.magia)
+                            elif select==3:
+                                enemigo.hp_lost((self.spell/1000)*self.magia)
+                                self.magia=self.magia*0.80                                
+                            else:
+                                pygame.mixer.music.load("C:\Python27\data\otac.mp3")
+                                pygame.mixer.music.play()
+                                time.sleep(3)
                     else:
-                        print "Atacaras? (1)si (2)no"
+                        pygame.mixer.music.load("C:\Python27\data\menupelea.mp3")
+                        pygame.mixer.music.play()
+                        raw_input("Press enter to skip or to continue...")
+                        pygame.mixer.music.stop()
                         select=0
-                        while (select<1 or select>2):
+                        while (select<1 or select>4):
+                            print "(1)Ataque (2)Magia (3)Hechizo (4)Observar"
                             select=int(raw_input("Your Choise: "))
+                            if (self.spell==0 and select==3):
+                                pygame.mixer.music.load("C:\Python27\data\ospel.mp3")
+                                pygame.mixer.music.play()
+                                time.sleep(3)
+                                select=0
                         if select==1:
                             enemigo.hp_lost(self.ataque)
+                        elif select==2:
+                            enemigo.hp_lost(self.magia)
+                        elif select==3:
+                            enemigo.hp_lost((self.spell/1000)*self.magia)
+                            self.magia=self.magia*0.80
                         else:
-                            print "No dejes que te engañe"
-                        aleat=random.randrange(1, 5)
-                        print aleat
-                        if (aleat==1):
-                            print "goblin is watching"
-                        else:
-                            self.hp=self.hp-(enemigo.ataque/self.defensa)*10
-                            print "goblin ataca"
-                    print self.hp, enemigo.hp
+                            pygame.mixer.music.load("C:\Python27\data\otac.mp3")
+                            pygame.mixer.music.play()
+                            time.sleep(3)
+                        if enemigo.hp>0:
+                            aleat=random.randrange(1, 5)
+                            #print aleat
+                        
+                            if (aleat==1):
+                                pygame.mixer.music.load("C:\Python27\data\observa.mp3")
+                                pygame.mixer.music.play()
+                                time.sleep(3)   
+                            else:
+                                pygame.mixer.music.load("C:\Python27\data\hplost.mp3")
+                                pygame.mixer.music.play()
+                                time.sleep(3)
+                                print "El enemigo ataca"
+                    print "Tu vida ", self.hp, "Vida enemigo", enemigo.hp
                     self.indiVida()
 
